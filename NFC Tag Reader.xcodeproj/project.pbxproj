@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		5E48471F2D7E12C80073A393 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E4847062D7E12C70073A393 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5E48470D2D7E12C70073A393;
+			remoteInfo = "NFC Tag Reader";
+		};
+		5E4847292D7E12C80073A393 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E4847062D7E12C70073A393 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5E48470D2D7E12C70073A393;
+			remoteInfo = "NFC Tag Reader";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5E48470E2D7E12C70073A393 /* NFC Tag Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NFC Tag Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E48471E2D7E12C80073A393 /* NFC Tag ReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NFC Tag ReaderTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E4847282D7E12C80073A393 /* NFC Tag ReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NFC Tag ReaderUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		5E4847102D7E12C70073A393 /* NFC Tag Reader */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "NFC Tag Reader";
+			sourceTree = "<group>";
+		};
+		5E4847212D7E12C80073A393 /* NFC Tag ReaderTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "NFC Tag ReaderTests";
+			sourceTree = "<group>";
+		};
+		5E48472B2D7E12C80073A393 /* NFC Tag ReaderUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "NFC Tag ReaderUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5E48470B2D7E12C70073A393 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E48471B2D7E12C80073A393 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E4847252D7E12C80073A393 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5E4847052D7E12C70073A393 = {
+			isa = PBXGroup;
+			children = (
+				5E4847102D7E12C70073A393 /* NFC Tag Reader */,
+				5E4847212D7E12C80073A393 /* NFC Tag ReaderTests */,
+				5E48472B2D7E12C80073A393 /* NFC Tag ReaderUITests */,
+				5E48470F2D7E12C70073A393 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5E48470F2D7E12C70073A393 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5E48470E2D7E12C70073A393 /* NFC Tag Reader.app */,
+				5E48471E2D7E12C80073A393 /* NFC Tag ReaderTests.xctest */,
+				5E4847282D7E12C80073A393 /* NFC Tag ReaderUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5E48470D2D7E12C70073A393 /* NFC Tag Reader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E4847322D7E12C80073A393 /* Build configuration list for PBXNativeTarget "NFC Tag Reader" */;
+			buildPhases = (
+				5E48470A2D7E12C70073A393 /* Sources */,
+				5E48470B2D7E12C70073A393 /* Frameworks */,
+				5E48470C2D7E12C70073A393 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				5E4847102D7E12C70073A393 /* NFC Tag Reader */,
+			);
+			name = "NFC Tag Reader";
+			packageProductDependencies = (
+			);
+			productName = "NFC Tag Reader";
+			productReference = 5E48470E2D7E12C70073A393 /* NFC Tag Reader.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5E48471D2D7E12C80073A393 /* NFC Tag ReaderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E4847352D7E12C80073A393 /* Build configuration list for PBXNativeTarget "NFC Tag ReaderTests" */;
+			buildPhases = (
+				5E48471A2D7E12C80073A393 /* Sources */,
+				5E48471B2D7E12C80073A393 /* Frameworks */,
+				5E48471C2D7E12C80073A393 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5E4847202D7E12C80073A393 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				5E4847212D7E12C80073A393 /* NFC Tag ReaderTests */,
+			);
+			name = "NFC Tag ReaderTests";
+			packageProductDependencies = (
+			);
+			productName = "NFC Tag ReaderTests";
+			productReference = 5E48471E2D7E12C80073A393 /* NFC Tag ReaderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5E4847272D7E12C80073A393 /* NFC Tag ReaderUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E4847382D7E12C80073A393 /* Build configuration list for PBXNativeTarget "NFC Tag ReaderUITests" */;
+			buildPhases = (
+				5E4847242D7E12C80073A393 /* Sources */,
+				5E4847252D7E12C80073A393 /* Frameworks */,
+				5E4847262D7E12C80073A393 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5E48472A2D7E12C80073A393 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				5E48472B2D7E12C80073A393 /* NFC Tag ReaderUITests */,
+			);
+			name = "NFC Tag ReaderUITests";
+			packageProductDependencies = (
+			);
+			productName = "NFC Tag ReaderUITests";
+			productReference = 5E4847282D7E12C80073A393 /* NFC Tag ReaderUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5E4847062D7E12C70073A393 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					5E48470D2D7E12C70073A393 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					5E48471D2D7E12C80073A393 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 5E48470D2D7E12C70073A393;
+					};
+					5E4847272D7E12C80073A393 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 5E48470D2D7E12C70073A393;
+					};
+				};
+			};
+			buildConfigurationList = 5E4847092D7E12C70073A393 /* Build configuration list for PBXProject "NFC Tag Reader" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5E4847052D7E12C70073A393;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 5E48470F2D7E12C70073A393 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5E48470D2D7E12C70073A393 /* NFC Tag Reader */,
+				5E48471D2D7E12C80073A393 /* NFC Tag ReaderTests */,
+				5E4847272D7E12C80073A393 /* NFC Tag ReaderUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5E48470C2D7E12C70073A393 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E48471C2D7E12C80073A393 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E4847262D7E12C80073A393 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5E48470A2D7E12C70073A393 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E48471A2D7E12C80073A393 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E4847242D7E12C80073A393 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5E4847202D7E12C80073A393 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5E48470D2D7E12C70073A393 /* NFC Tag Reader */;
+			targetProxy = 5E48471F2D7E12C80073A393 /* PBXContainerItemProxy */;
+		};
+		5E48472A2D7E12C80073A393 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5E48470D2D7E12C70073A393 /* NFC Tag Reader */;
+			targetProxy = 5E4847292D7E12C80073A393 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5E4847302D7E12C80073A393 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5E4847312D7E12C80073A393 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5E4847332D7E12C80073A393 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"NFC Tag Reader/Preview Content\"";
+				DEVELOPMENT_TEAM = RUCL895JKR;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "youngermaster.NFC-Tag-Reader";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5E4847342D7E12C80073A393 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"NFC Tag Reader/Preview Content\"";
+				DEVELOPMENT_TEAM = RUCL895JKR;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "youngermaster.NFC-Tag-Reader";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5E4847362D7E12C80073A393 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RUCL895JKR;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "youngermaster.NFC-Tag-ReaderTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NFC Tag Reader.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NFC Tag Reader";
+			};
+			name = Debug;
+		};
+		5E4847372D7E12C80073A393 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RUCL895JKR;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "youngermaster.NFC-Tag-ReaderTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NFC Tag Reader.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NFC Tag Reader";
+			};
+			name = Release;
+		};
+		5E4847392D7E12C80073A393 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RUCL895JKR;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "youngermaster.NFC-Tag-ReaderUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "NFC Tag Reader";
+			};
+			name = Debug;
+		};
+		5E48473A2D7E12C80073A393 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RUCL895JKR;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "youngermaster.NFC-Tag-ReaderUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "NFC Tag Reader";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5E4847092D7E12C70073A393 /* Build configuration list for PBXProject "NFC Tag Reader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E4847302D7E12C80073A393 /* Debug */,
+				5E4847312D7E12C80073A393 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E4847322D7E12C80073A393 /* Build configuration list for PBXNativeTarget "NFC Tag Reader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E4847332D7E12C80073A393 /* Debug */,
+				5E4847342D7E12C80073A393 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E4847352D7E12C80073A393 /* Build configuration list for PBXNativeTarget "NFC Tag ReaderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E4847362D7E12C80073A393 /* Debug */,
+				5E4847372D7E12C80073A393 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E4847382D7E12C80073A393 /* Build configuration list for PBXNativeTarget "NFC Tag ReaderUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E4847392D7E12C80073A393 /* Debug */,
+				5E48473A2D7E12C80073A393 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5E4847062D7E12C70073A393 /* Project object */;
+}
