@@ -11,7 +11,7 @@ import SwiftUI
 struct NFC_Tag_ReaderApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Home()
         }
     }
 }

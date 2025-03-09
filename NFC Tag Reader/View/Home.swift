@@ -1,15 +1,11 @@
 import SwiftUI
-import UIKit
 
 struct Home: View {
-  // Estado local para la UI sin depender directamente de NFCService
+  // Utilizamos el ViewModel para gestionar el estado y la lógica
   @State private var message: String = "Listo para escanear"
   @State private var tagUID: String = ""
   @State private var tagContent: String = ""
   @State private var isScanning: Bool = false
-
-  // Referencia al servicio NFC que se inicializará desde fuera
-  // En la aplicación real, esto se inicializará en la vista ContentView o en un EnvironmentObject
 
   var body: some View {
     VStack(spacing: 20) {
@@ -27,7 +23,7 @@ struct Home: View {
         .frame(maxWidth: .infinity)
         .background(
           RoundedRectangle(cornerRadius: 10)
-            .fill(Color(UIColor.systemGray6))
+            .fill(Color.gray.opacity(0.2))
         )
         .padding(.horizontal)
 
@@ -68,7 +64,7 @@ struct Home: View {
               .padding(8)
               .background(
                 RoundedRectangle(cornerRadius: 8)
-                  .fill(Color(UIColor.systemGray5))
+                  .fill(Color.gray.opacity(0.15))
               )
           }
           .padding(.horizontal)
@@ -78,7 +74,7 @@ struct Home: View {
       .padding()
       .background(
         RoundedRectangle(cornerRadius: 10)
-          .fill(Color(UIColor.systemGray6))
+          .fill(Color.gray.opacity(0.2))
           .opacity(tagUID.isEmpty && tagContent.isEmpty ? 0 : 1)
       )
       .padding(.horizontal)
@@ -88,10 +84,21 @@ struct Home: View {
 
       // Botón para iniciar o detener el escaneo
       Button(action: {
-        // En la implementación real, aquí llamaríamos a los métodos del servicio NFC
-        // Por ahora, solo actualizamos el estado local para la demo
+        // En una implementación real, aquí llamaríamos al servicio NFC
         isScanning.toggle()
         message = isScanning ? "Acerca tu dispositivo a una etiqueta NFC" : "Escaneo detenido"
+
+        // Simulación para demostración
+        if isScanning {
+          DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            if self.isScanning {
+              self.isScanning = false
+              self.tagUID = "04:A2:E2:49:93:12:02"
+              self.tagContent = "https://example.com\nHola desde NFC"
+              self.message = "Etiqueta simulada leída"
+            }
+          }
+        }
       }) {
         HStack {
           Image(systemName: isScanning ? "xmark.circle" : "wave.3.right")

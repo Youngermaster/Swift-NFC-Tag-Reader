@@ -75,12 +75,11 @@ class NFCService: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate {
           return
         }
 
-        // Leer el ID de la etiqueta si está disponible
-        if let tag = tag as? NFCTagType {
-          let uid = tag.identifier.map { String(format: "%02X", $0) }.joined()
-          DispatchQueue.main.async {
-            self.tagUID = uid
-          }
+        // Usar el adaptador para obtener el ID de la etiqueta
+        let tagAdapter = NFCTagAdapter(tag: tag)
+        let uid = tagAdapter.identifier.map { String(format: "%02X", $0) }.joined()
+        DispatchQueue.main.async {
+          self.tagUID = uid
         }
 
         // Leer el contenido NDEF de la etiqueta
@@ -125,12 +124,33 @@ protocol NFCTagType {
   var identifier: Data { get }
 }
 
-extension NFCNDEFTag {
+// En lugar de extender el protocolo, creamos una clase adaptadora
+class NFCTagAdapter: NFCTagType {
+  private let tag: NFCNDEFTag
+
+  init(tag: NFCNDEFTag) {
+    self.tag = tag
+  }
+
   var identifier: Data {
-    // Este es un placeholder ya que no podemos acceder directamente al UID
-    // desde NFCNDEFTag. En una aplicación real, esto dependerá del tipo de etiqueta.
-    return Data()
+    // Intentamos obtener el identificador real del tag
+    // Esta implementación funcionará mejor en un dispositivo real
+    if let iso7816Tag = tag as? NFCISO7816Tag {
+      return iso7816Tag.identifier
+    } else if let iso15693Tag = tag as? NFCISO15693Tag {
+      return iso15693Tag.identifier
+    } else if let miFareTag = tag as? NFCMiFareTag {
+      return miFareTag.identifier
+    } else if let feliCaTag = tag as? NFCFeliCaTag {
+      return feliCaTag.currentIDm
+    }
+
+    // Si no podemos determinar el tipo específico, devolvemos un ID genérico o vacío
+    return Data([0x00, 0x00, 0x00, 0x00])
   }
 }
 
-extension NFCNDEFTag: NFCTagType {}
+// Función auxiliar para obtener un adaptador para cualquier tag
+func getTagAdapter(for tag: NFCNDEFTag) -> NFCTagType {
+  return NFCTagAdapter(tag: tag)
+}
