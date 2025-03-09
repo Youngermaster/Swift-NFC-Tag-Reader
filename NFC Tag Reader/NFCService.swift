@@ -1,130 +1,260 @@
 import CoreNFC
 import Foundation
+import SwiftUI
 
-// Clase para gestionar las operaciones de NFC
-class NFCService: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate {
+// Real NFC implementation using CoreNFC
+// This will replace RealNFCReader at runtime
+class NFCService: NFCReaderBase, NFCNDEFReaderSessionDelegate {
+  // We don't need to redeclare properties that are already in the base class
+  // Just use the ones from NFCReaderBase
 
-  // Esta variable publicada permitirá actualizar la UI cuando se lea una etiqueta
-  @Published var message: String = "Escanea una etiqueta NFC"
-  @Published var tagUID: String = ""
-  @Published var tagContent: String = ""
-  @Published var isScanning: Bool = false
-
-  // Sesión de lectura NFC
+  // NFC session
   private var nfcSession: NFCNDEFReaderSession?
 
-  // Función para iniciar el escaneo de etiquetas NFC
-  func scanTag() {
+  // Initialize with a better message
+  override init() {
+    super.init()
+    message = "Ready to scan a real NFC tag"
+  }
+
+  // Start scanning for real NFC tags
+  override func scanTag() {
     guard NFCNDEFReaderSession.readingAvailable else {
-      self.message = "Este dispositivo no soporta la lectura de etiquetas NFC"
+      self.message = "This device doesn't support NFC tag reading"
       return
     }
 
-    self.isScanning = true
-    self.message = "Acerca tu dispositivo a una etiqueta NFC"
+    // Clear previous data
+    self.tagUID = ""
+    self.tagContent = ""
+    self.tagTechnology = ""
 
-    // Inicializar sesión NFC
+    // Update status
+    self.isScanning = true
+    self.message = "Hold your iPhone near an NFC tag"
+
+    // Create and begin NFC session
     nfcSession = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
-    nfcSession?.alertMessage = "Acerca tu iPhone a una etiqueta NFC"
+    nfcSession?.alertMessage = "Hold your iPhone near an NFC tag"
     nfcSession?.begin()
   }
 
-  // Detener el escaneo de NFC
-  func stopScan() {
+  // Stop scanning
+  override func stopScan() {
     nfcSession?.invalidate()
     self.isScanning = false
+    self.message = "Scan stopped"
   }
 
   // MARK: - NFCNDEFReaderSessionDelegate Methods
 
-  // Se llama cuando se produce un error
+  // Called when the session expires or encounters an error
   func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
     DispatchQueue.main.async {
       self.isScanning = false
-      self.message = "Error de lectura: \(error.localizedDescription)"
+
+      // For timeout error, show a friendly message
+      if error.localizedDescription.contains("Session timeout") {
+        self.message = "Scanning timed out"
+      } else {
+        self.message = "Reading error: \(error.localizedDescription)"
+      }
     }
   }
 
-  // Se llama cuando se detecta una etiqueta NDEF
+  // Called when NDEF messages are detected
   func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
-    // Procesar mensajes NDEF
+    // Process NDEF messages
     var resultText = ""
 
     for message in messages {
       for record in message.records {
-        if let recordText = String(data: record.payload, encoding: .utf8) {
-          resultText += recordText + "\n"
+        // Add record type
+        resultText += "Type: \(String(data: record.type, encoding: .utf8) ?? "Unknown")\n"
+
+        // Process payload based on its type
+        if record.typeNameFormat == .nfcWellKnown {
+          // URI well-known record
+          if let typeString = String(data: record.type, encoding: .utf8), typeString == "U" {
+            if record.payload.count > 1 {
+              // First byte indicates URI prefix
+              let prefixByte = record.payload[0]
+              let prefixString = getURIPrefix(from: prefixByte)
+
+              // Rest is URI content
+              let uriPayload = record.payload.subdata(in: 1..<record.payload.count)
+              if let uriString = String(data: uriPayload, encoding: .utf8) {
+                resultText += "URI: \(prefixString)\(uriString)\n"
+              }
+            }
+          }
+          // Text well-known record
+          else if let typeString = String(data: record.type, encoding: .utf8), typeString == "T" {
+            if record.payload.count > 1 {
+              // First byte contains language code
+              let languageCodeLength = Int(record.payload[0] & 0x3F)
+              let languageCodeData = record.payload.subdata(in: 1..<(1 + languageCodeLength))
+              let textData = record.payload.subdata(
+                in: (1 + languageCodeLength)..<record.payload.count)
+
+              if let languageCode = String(data: languageCodeData, encoding: .utf8),
+                let text = String(data: textData, encoding: .utf8)
+              {
+                resultText += "Text (\(languageCode)): \(text)\n"
+              }
+            }
+          }
         }
+
+        // If we couldn't process specifically, show payload as text
+        if resultText.isEmpty || (!resultText.contains("URI:") && !resultText.contains("Text (")) {
+          if let payloadText = String(data: record.payload, encoding: .utf8) {
+            resultText += "Content: \(payloadText)\n"
+          } else {
+            // If it can't be interpreted as text, show in hexadecimal
+            let hexString = record.payload.map { String(format: "%02X", $0) }.joined()
+            resultText += "Data (HEX): \(hexString)\n"
+          }
+        }
+
+        resultText += "---\n"
       }
     }
 
     DispatchQueue.main.async {
-      self.tagContent = resultText.isEmpty ? "No hay contenido legible" : resultText
-      self.message = "Etiqueta leída correctamente"
+      self.tagContent = resultText.isEmpty ? "No readable content" : resultText
+      self.message = "Tag read successfully"
       self.isScanning = false
     }
   }
 
-  // Se llama cuando se detecta una etiqueta
+  // Called when a tag is detected
   func readerSession(_ session: NFCNDEFReaderSession, didDetect tags: [NFCNDEFTag]) {
-    // Conectar con la primera etiqueta encontrada
+    // Connect to the first tag found
     if let tag = tags.first {
       session.connect(to: tag) { error in
         if let error = error {
-          session.invalidate(errorMessage: "Error de conexión: \(error.localizedDescription)")
+          session.invalidate(errorMessage: "Connection error: \(error.localizedDescription)")
           return
         }
 
-        // Usar el adaptador para obtener el ID de la etiqueta
-        let tagAdapter = NFCTagAdapter(tag: tag)
-        let uid = tagAdapter.identifier.map { String(format: "%02X", $0) }.joined()
+        // Get technology and UID
+        let tagInfo = self.detectTagType(tag: tag)
+
         DispatchQueue.main.async {
-          self.tagUID = uid
+          self.tagUID = tagInfo.uid
+          self.tagTechnology = tagInfo.technology
         }
 
-        // Leer el contenido NDEF de la etiqueta
+        // Read NDEF content from the tag
         tag.queryNDEFStatus { status, capacity, error in
           if let error = error {
-            session.invalidate(errorMessage: "Error al leer NDEF: \(error.localizedDescription)")
+            session.invalidate(errorMessage: "Error reading NDEF: \(error.localizedDescription)")
             return
           }
 
           switch status {
           case .notSupported:
-            session.invalidate(errorMessage: "Etiqueta no compatible con NDEF")
+            session.invalidate(errorMessage: "Tag doesn't support NDEF")
           case .readOnly, .readWrite:
             tag.readNDEF { message, error in
               if let error = error {
                 session.invalidate(
-                  errorMessage: "Error al leer NDEF: \(error.localizedDescription)")
+                  errorMessage: "Error reading NDEF: \(error.localizedDescription)")
                 return
               }
               if let message = message {
-                // Procesar el mensaje
+                // Process message
                 self.readerSession(session, didDetectNDEFs: [message])
-                session.alertMessage = "Etiqueta leída correctamente"
-                // Mantenemos la sesión activa para hacer más lecturas
+                session.alertMessage = "Tag read successfully"
+                // Keep session active for more reads
               } else {
-                session.invalidate(errorMessage: "No se encontró contenido NDEF")
+                session.invalidate(errorMessage: "No NDEF content found")
               }
             }
           @unknown default:
-            session.invalidate(errorMessage: "Estado NDEF desconocido")
+            session.invalidate(errorMessage: "Unknown NDEF status")
           }
         }
       }
     } else {
-      session.invalidate(errorMessage: "No se encontró una etiqueta compatible")
+      session.invalidate(errorMessage: "No compatible tag found")
+    }
+  }
+
+  // MARK: - Helper Methods
+
+  // Helper function to detect technology type and get UID
+  private func detectTagType(tag: NFCNDEFTag) -> (uid: String, technology: String) {
+    if let iso7816Tag = tag as? NFCISO7816Tag {
+      let uidString = iso7816Tag.identifier.map { String(format: "%02X", $0) }.joined(
+        separator: ":")
+      return (uidString, "ISO 7816")
+    } else if let iso15693Tag = tag as? NFCISO15693Tag {
+      let uidString = iso15693Tag.identifier.map { String(format: "%02X", $0) }.joined(
+        separator: ":")
+      return (uidString, "ISO 15693")
+    } else if let miFareTag = tag as? NFCMiFareTag {
+      let uidString = miFareTag.identifier.map { String(format: "%02X", $0) }.joined(separator: ":")
+      return (uidString, "MIFARE")
+    } else if let feliCaTag = tag as? NFCFeliCaTag {
+      let uidString = feliCaTag.currentIDm.map { String(format: "%02X", $0) }.joined(separator: ":")
+      return (uidString, "FeliCa")
+    }
+
+    // If we can't determine specific type, return unknown
+    return ("Unknown Tag ID", "Unknown Technology")
+  }
+
+  // Helper function to get URI prefix from standard NFC byte
+  private func getURIPrefix(from byte: UInt8) -> String {
+    switch byte {
+    case 0x01: return "http://www."
+    case 0x02: return "https://www."
+    case 0x03: return "http://"
+    case 0x04: return "https://"
+    case 0x05: return "tel:"
+    case 0x06: return "mailto:"
+    case 0x07: return "ftp://anonymous:anonymous@"
+    case 0x08: return "ftp://ftp."
+    case 0x09: return "ftps://"
+    case 0x0A: return "sftp://"
+    case 0x0B: return "smb://"
+    case 0x0C: return "nfs://"
+    case 0x0D: return "ftp://"
+    case 0x0E: return "dav://"
+    case 0x0F: return "news:"
+    case 0x10: return "telnet://"
+    case 0x11: return "imap:"
+    case 0x12: return "rtsp://"
+    case 0x13: return "urn:"
+    case 0x14: return "pop:"
+    case 0x15: return "sip:"
+    case 0x16: return "sips:"
+    case 0x17: return "tftp:"
+    case 0x18: return "btspp://"
+    case 0x19: return "btl2cap://"
+    case 0x1A: return "btgoep://"
+    case 0x1B: return "tcpobex://"
+    case 0x1C: return "irdaobex://"
+    case 0x1D: return "file://"
+    case 0x1E: return "urn:epc:id:"
+    case 0x1F: return "urn:epc:tag:"
+    case 0x20: return "urn:epc:pat:"
+    case 0x21: return "urn:epc:raw:"
+    case 0x22: return "urn:epc:"
+    case 0x23: return "urn:nfc:"
+    default: return ""
     }
   }
 }
 
-// Extensión para NFCTag para obtener el identificador
+// Protocol for NFCTag to get identifier
 protocol NFCTagType {
   var identifier: Data { get }
 }
 
-// En lugar de extender el protocolo, creamos una clase adaptadora
+// Adapter class instead of protocol extension
 class NFCTagAdapter: NFCTagType {
   private let tag: NFCNDEFTag
 
@@ -133,8 +263,7 @@ class NFCTagAdapter: NFCTagType {
   }
 
   var identifier: Data {
-    // Intentamos obtener el identificador real del tag
-    // Esta implementación funcionará mejor en un dispositivo real
+    // Try to get real tag identifier
     if let iso7816Tag = tag as? NFCISO7816Tag {
       return iso7816Tag.identifier
     } else if let iso15693Tag = tag as? NFCISO15693Tag {
@@ -145,8 +274,12 @@ class NFCTagAdapter: NFCTagType {
       return feliCaTag.currentIDm
     }
 
-    // Si no podemos determinar el tipo específico, devolvemos un ID genérico o vacío
-    return Data([0x00, 0x00, 0x00, 0x00])
+    // If we can't determine specific type, create unique ID based on timestamp
+    // This ensures each read has a different ID
+    let timestamp = UInt64(Date().timeIntervalSince1970 * 1000)
+    var timestampData = Data()
+    withUnsafeBytes(of: timestamp) { timestampData.append(contentsOf: $0) }
+    return timestampData
   }
 }
 
