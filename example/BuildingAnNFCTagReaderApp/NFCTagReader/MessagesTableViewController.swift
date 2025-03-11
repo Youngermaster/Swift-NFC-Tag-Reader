@@ -33,7 +33,7 @@ class MessagesTableViewController: UITableViewController, NFCNDEFReaderSessionDe
         }
 
         session = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: false)
-        session?.alertMessage = "Hold your iPhone near the item to learn more about it."
+        session?.alertMessage = "HI, this is a test message. Hold your iPhone near the item to learn more about it."
         session?.begin()
     }
 
