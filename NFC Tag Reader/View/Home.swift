@@ -1,5 +1,15 @@
 import SwiftUI
 
+// Import NFCService file by specifying its target
+@_exported import struct NFC_Tag_Reader.Home
+@_exported import class NFC_Tag_Reader.MockNFCReader
+@_exported import class NFC_Tag_Reader.NFCService
+@_exported import enum NFC_Tag_Reader.NFCSessionType
+
+#if canImport(CoreNFC)
+  import CoreNFC
+#endif
+
 struct Home: View {
   // Pick real or mock based on environment:
   #if targetEnvironment(simulator)
